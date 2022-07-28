@@ -16,8 +16,8 @@ const MainLayout = ({ children }: MainLayoutProps) => {
             <strong>MealPlan</strong>
           </h1>
           <ul className="navbar-nav">
-            <li className="nav-item mx-2">
-              <Link className="nav-link" to={routes.home()}>
+            <li className="nav-item">
+              <Link className="nav-link mx-3" to={routes.home()}>
                 <strong>Week Plan</strong>
               </Link>
             </li>
