@@ -10,7 +10,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
       <header>
         <nav
           className="navbar navbar-expand-lg navbar-dark"
-          style={{ 'background-color': '#6b007d' }}
+          style={{ backgroundColor: '#6b007d' }}
         >
           <h1 className="navbar-brand mx-3 my-2">
             <strong>MealPlan</strong>
