@@ -54,7 +54,7 @@ export default RedwoodDevFatalErrorPage ||
       />
       <section>
         <h1>
-          <span>Something went wrong</span>
+          <span>Something went wrong on MealPlan</span>
         </h1>
       </section>
     </main>
