@@ -13,6 +13,7 @@ generator client {
 model Ingredient {
   id         String    @id @default(cuid())
   name       String
+  quantity   Int
   FoodItem   FoodItem? @relation(fields: [foodItemId], references: [id])
   foodItemId String?
 
@@ -41,5 +42,6 @@ model DayPlan {
 
 model WeekPlan {
   id   String    @id @default(cuid())
+  name String
   days DayPlan[]
 }
