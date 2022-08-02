@@ -1,5 +1,7 @@
 import { MetaTags } from '@redwoodjs/web'
 
+import FoodItemsCell from 'src/components/FoodItemsCell/FoodItemsCell'
+
 const HomePage = () => {
   return (
     <>
@@ -21,6 +23,7 @@ const HomePage = () => {
             <h3 className="text-center">Items</h3>
             <div className="d-flex align-items-stretch">
               <ul className="m-auto list-group">
+                <FoodItemsCell />
                 <li className="list-group-item">
                   <button type="button" className="btn btn-info m-auto">
                     Create New Item
