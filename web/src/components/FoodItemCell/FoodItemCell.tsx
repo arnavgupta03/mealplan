@@ -105,10 +105,7 @@ export const Success = ({
         duration: 2000,
       })
     },
-    refetchQueries: [
-      { query: QUERY }, // DocumentNode object parsed with gql
-      'FindFoodItemQuery', // Query name
-    ],
+    refetchQueries: [{ query: QUERY }, 'FindFoodItemQuery'],
   })
 
   const handleDelete = (ingId) => {
