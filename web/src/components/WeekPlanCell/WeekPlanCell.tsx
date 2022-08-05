@@ -7,12 +7,13 @@ import type {
 } from 'types/graphql'
 
 import { Form, Submit, TextField, FormError } from '@redwoodjs/forms'
+import { routes } from '@redwoodjs/router'
+import { Link } from '@redwoodjs/router'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 import { useMutation } from '@redwoodjs/web'
 import { toast, Toaster } from '@redwoodjs/web/toast'
 
 import DayPlanCell from 'src/components/DayPlanCell'
-// import { QUERY as DAYPLANQUERY } from 'src/components/DayPlanCell'
 import FoodItemsCell from 'src/components/FoodItemsCell'
 import { QUERY as FOODITEMSQUERY } from 'src/components/FoodItemsCell'
 
@@ -132,9 +133,12 @@ export const Success = ({
           <h1 className="my-3 mx-2">Week Plan</h1>
         </div>
         <div className="col-md-2 d-grid gap-2">
-          <button type="button" className="btn btn-success btn-lg my-4 mx-2">
+          <Link
+            className="btn btn-success btn-lg my-4 mx-2"
+            to={routes.groceryList({ id: weekPlan.id })}
+          >
             Grocery List
-          </button>
+          </Link>
         </div>
         <div className="col-md-2 d-grid gap-2">
           <button
