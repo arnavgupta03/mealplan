@@ -5,6 +5,8 @@ export const schema = gql`
     ingredients: [Ingredient]!
     DayPlan: DayPlan
     dayPlanId: String
+    WeekPlan: WeekPlan
+    weekPlanId: String
   }
 
   type Query {
@@ -15,11 +17,13 @@ export const schema = gql`
   input CreateFoodItemInput {
     name: String!
     dayPlanId: String
+    weekPlanId: String
   }
 
   input UpdateFoodItemInput {
     name: String
     dayPlanId: String
+    weekPlanId: String
   }
 
   type Mutation {

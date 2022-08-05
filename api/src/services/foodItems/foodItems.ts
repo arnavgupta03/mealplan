@@ -45,4 +45,6 @@ export const FoodItem: FoodItemResolvers = {
     db.foodItem.findUnique({ where: { id: root.id } }).ingredients(),
   DayPlan: (_obj, { root }) =>
     db.foodItem.findUnique({ where: { id: root.id } }).DayPlan(),
+  WeekPlan: (_obj, { root }) =>
+    db.foodItem.findUnique({ where: { id: root.id } }).WeekPlan(),
 }

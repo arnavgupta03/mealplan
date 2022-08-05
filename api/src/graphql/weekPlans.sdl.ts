@@ -2,6 +2,7 @@ export const schema = gql`
   type WeekPlan {
     id: String!
     name: String!
+    recipes: [FoodItem]!
     days: [DayPlan]!
   }
 

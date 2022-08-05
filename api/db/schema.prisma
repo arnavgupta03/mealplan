@@ -26,8 +26,8 @@ model FoodItem {
   ingredients Ingredient[]
   DayPlan     DayPlan?     @relation(fields: [dayPlanId], references: [id])
   dayPlanId   String?
-
-  @@unique([name, dayPlanId])
+  WeekPlan    WeekPlan?    @relation(fields: [weekPlanId], references: [id])
+  weekPlanId  String?
 }
 
 model DayPlan {
@@ -41,7 +41,8 @@ model DayPlan {
 }
 
 model WeekPlan {
-  id   String    @id @default(cuid())
-  name String
-  days DayPlan[]
+  id      String     @id @default(cuid())
+  name    String
+  recipes FoodItem[]
+  days    DayPlan[]
 }

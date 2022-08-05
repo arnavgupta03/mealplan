@@ -41,6 +41,8 @@ export const deleteWeekPlan: MutationResolvers['deleteWeekPlan'] = ({ id }) => {
 }
 
 export const WeekPlan: WeekPlanResolvers = {
+  recipes: (_obj, { root }) =>
+    db.weekPlan.findUnique({ where: { id: root.id } }).recipes(),
   days: (_obj, { root }) =>
     db.weekPlan.findUnique({ where: { id: root.id } }).days(),
 }
