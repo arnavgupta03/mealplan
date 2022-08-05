@@ -19992,6 +19992,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-datalist-input@npm:2.2.1":
+  version: 2.2.1
+  resolution: "react-datalist-input@npm:2.2.1"
+  peerDependencies:
+    prop-types: ^15.7.2
+    react: ^17.0.2
+    react-dom: ^17.0.2
+  checksum: abfddcd55ae4e594a493f42a4d8c551b3934af6faa93730b31af1c177aa56a2804073f0ce9e7c999ec7d8c037479ccf1387421ceb37b3e79f730dd6ab274aba0
+  languageName: node
+  linkType: hard
+
 "react-docgen-typescript@npm:^2.1.1":
   version: 2.2.2
   resolution: "react-docgen-typescript@npm:2.2.2"
@@ -23953,6 +23964,7 @@ __metadata:
     "@redwoodjs/web": 2.1.1
     prop-types: 15.8.1
     react: 17.0.2
+    react-datalist-input: 2.2.1
     react-dom: 17.0.2
     react-modal: ^3.15.1
   languageName: unknown
