@@ -10,3 +10,9 @@
 .ReactModal__Overlay--before-close{
   opacity: 0;
 }
+
+.glowing-border {
+  outline: none;
+  border-color: #9ecaed;
+  box-shadow: 0 0 10px #9ecaed;
+}

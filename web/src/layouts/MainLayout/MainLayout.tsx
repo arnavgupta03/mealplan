@@ -12,9 +12,11 @@ const MainLayout = ({ children }: MainLayoutProps) => {
           className="navbar navbar-expand-lg navbar-dark"
           style={{ backgroundColor: '#6b007d' }}
         >
-          <h1 className="navbar-brand mx-3 my-2">
-            <strong>MealPlan</strong>
-          </h1>
+          <Link className="nav-link" to={routes.home()}>
+            <h1 className="navbar-brand mx-3 my-2">
+              <strong>MealPlan</strong>
+            </h1>
+          </Link>
           <ul className="navbar-nav">
             <li className="nav-item">
               <Link className="nav-link mx-3" to={routes.home()}>

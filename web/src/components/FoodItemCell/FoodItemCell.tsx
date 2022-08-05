@@ -29,7 +29,7 @@ export const QUERY = gql`
   }
 `
 
-const CREATE_INGREDIENT = gql`
+export const CREATE_INGREDIENT = gql`
   mutation CreateIngredientMutation($input: CreateIngredientInput!) {
     createIngredient(input: $input) {
       id
