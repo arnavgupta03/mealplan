@@ -44,7 +44,21 @@ const CREATE_DAY_PLAN = gql`
   }
 `
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () => (
+  <div
+    className="spinner-border m-2"
+    role="status"
+    style={{
+      width: '3rem',
+      height: '3rem',
+      position: 'absolute',
+      left: '50%',
+      top: '50%',
+    }}
+  >
+    <span className="visually-hidden">Loading...</span>{' '}
+  </div>
+)
 
 export const Empty = () => (
   <div>
@@ -64,6 +78,7 @@ export const Success = ({
 }: CellSuccessProps<FindWeekPlanQuery, FindWeekPlanQueryVariables>) => {
   const [foodItemModalOpen, setFoodItemModalOpen] = useState(false)
   const [shareModalOpen, setShareModalOpen] = useState(false)
+  const [loadingDays, setLoadingDays] = useState(true)
 
   const [createDayPlans] = useMutation(CREATE_DAY_PLAN, {
     refetchQueries: [{ query: QUERY }, 'FindWeekPlanQuery'],
@@ -96,25 +111,28 @@ export const Success = ({
 
   const [daysCreated, setDaysCreated] = useState(weekPlan.days.length)
 
-  const createEachDay = async (dayNum, weekId) => {
-    console.log({ day: dayNum, weekPlanId: weekId })
-    await createDayPlans({
-      variables: { input: { day: dayNum, weekPlanId: weekId } },
-    })
-  }
-
-  const createDays = async () => {
-    for (const dayNum of [...Array(7).keys()]) {
-      await createEachDay(dayNum + 1, weekPlan.id)
-      setDaysCreated(daysCreated + 1)
-    }
-  }
-
   useEffect(() => {
-    if (daysCreated === 0) {
-      createDays()
+    const createEachDay = async (dayNum, weekId) => {
+      console.log({ day: dayNum, weekPlanId: weekId })
+      await createDayPlans({
+        variables: { input: { day: dayNum, weekPlanId: weekId } },
+      })
     }
-  })
+
+    const createDays = async () => {
+      for (const dayNum of [...Array(7).keys()]) {
+        await createEachDay(dayNum + 1, weekPlan.id)
+        setDaysCreated(daysCreated + 1)
+        console.log(daysCreated)
+      }
+    }
+
+    if (daysCreated === 0) {
+      createDays().then(() => setLoadingDays(false))
+    } else if (daysCreated === 7) {
+      setLoadingDays(false)
+    }
+  }, [daysCreated, weekPlan.id, createDayPlans])
 
   const onClickShare = () => {
     setShareModalOpen(true)
@@ -220,7 +238,12 @@ export const Success = ({
                 name="name"
                 validation={{ required: true }}
               />
-
+              <div className="row">
+                <div className="alert alert-info text-center" role="alert">
+                  To add ingredients to this recipe, simply click on it from the
+                  Week Plan (once it&apos;s been created of course!)
+                </div>
+              </div>
               <div className="row">
                 <Submit className="btn btn-success my-2" disabled={loading}>
                   Add Recipe
@@ -237,20 +260,26 @@ export const Success = ({
           </ReactModal>
         </div>
         <div
-          className="col-md-9 container-fluid border border-primary border-2 rounded-3 shadow"
+          className="col-md-9 container-fluid border border-primary border-2 rounded-3 shadow p-2"
           style={{ backgroundColor: '#f4f7ff' }}
         >
           <div className="row">
-            {weekPlan.days.map((day) => {
-              return (
-                <div
-                  key={day.id}
-                  className="col m-1 py-3 px-2 rounded-2 shadow"
-                >
-                  <DayPlanCell id={day.id} />
-                </div>
-              )
-            })}
+            {loadingDays ? (
+              <div className="spinner-border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+            ) : (
+              weekPlan.days.map((day) => {
+                return (
+                  <div
+                    key={day.id}
+                    className="col m-1 py-3 px-2 rounded-2 shadow"
+                  >
+                    <DayPlanCell id={day.id} />
+                  </div>
+                )
+              })
+            )}
           </div>
         </div>
       </div>

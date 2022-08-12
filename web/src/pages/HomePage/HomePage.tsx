@@ -14,6 +14,7 @@ export const CREATE_WEEK_PLAN = gql`
 `
 
 const HomePage = () => {
+  const [loading, setLoading] = useState(true)
   const [createWeekPlanHome] = useMutation(CREATE_WEEK_PLAN)
   const [thisWeekPlanId, setThisWeekPlanId] = useState(
     localStorage.getItem('weekPlanId')
@@ -30,13 +31,20 @@ const HomePage = () => {
         setThisWeekPlanId(data.data.createWeekPlan.id)
       })
     }
+    setLoading(false)
   }, [thisWeekPlanId, createWeekPlanHome])
 
   return (
     <>
       <MetaTags title="Home" description="Home page" />
 
-      <WeekPlanCell id={thisWeekPlanId} />
+      {loading ? (
+        <div className="spinner-border" role="status">
+          <span className="visually-hidden">Loading...</span>{' '}
+        </div>
+      ) : (
+        <WeekPlanCell id={thisWeekPlanId} />
+      )}
     </>
   )
 }

@@ -47,7 +47,11 @@ const CREATE_FOOD_ITEM_DAY = gql`
   }
 `
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () => (
+  <div className="spinner-border text-primary" role="status">
+    <span className="visually-hidden">Loading...</span>
+  </div>
+)
 
 export const Empty = () => {
   return <div>Empty</div>
